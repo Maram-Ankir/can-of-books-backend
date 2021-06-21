@@ -8,14 +8,13 @@ const cors = require('cors');
 app.use(cors())
 
 const PORT = process.env.PORT;
-// connect to mongo db using mongoose
 mongoose.connect('mongodb://localhost:27017/myFavoriteCats',
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
-seedUserData();
+seedUserData(); 
 
-app.get('/cats', getCats)
+app.get('/books', getbooks)
 
 app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
