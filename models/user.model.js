@@ -1,41 +1,56 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const bookSchema = require('./cat.model');
+const bookSchema = require('./book.model');
 
 
-// Here we are creating a new schema obj, which will be used later on to generate the model
 const userSchema = new mongoose.Schema({
     email: { type: String },
     books: [bookSchema]
 });
 
-// generate the model based on the schema
 const userModel = mongoose.model('users', userSchema);
 
 
-const seedUserData = () => {
-    const newUser = new userModel({
+function seedUserData() {
+    const firstUser = new userModel({
         email: 'maramankir5@gmail.com',
         books: [
-            { name: '' },
-            { description: '' },
-            { status: '' },
-            { name: '' },
-            { description: '' },
-            { status: '' },
-            { name: '' },
-            { description: '' },
-            { status: '' }
-
+            {
+                name: 'A Tale of Two Cities',
+                description: 'A Tale of Two Cities is an 1859 historical novel by Charles Dickens, set in London and Paris before and during the French Revolution. The novel tells the story of the French Doctor Manette,.',
+                status: 'available'
+            },
+            {
+                name: 'Half of a Yellow Sun',
+                description: 'When Nigerian author Adichie was growing up, the Biafran war “hovered over everything”. Her sweeping, evocative novel, which won the Orange prize, charts the political and personal struggles of those caught up in the conflict and explores the brutal legacy of colonialism in Africa.',
+                status: 'available'
+            },
            
         ]
-    });
+    })
 
-    // console.log(newUser);
+    const secondUser = new userModel({
+        email: 'reembaniali@gmail.com',
+        books: [
+            {
+                name: 'A Tale of Two Cities',
+                description: 'A Tale of Two Cities is an 1859 historical novel by Charles Dickens, set in London and Paris before and during the French Revolution. The novel tells the story of the French Doctor Manette,.',
+                status: 'available'
+            },
+            {
+                name: 'Half of a Yellow Sun',
+                description: 'When Nigerian author Adichie was growing up, the Biafran war “hovered over everything”. Her sweeping, evocative novel, which won the Orange prize, charts the political and personal struggles of those caught up in the conflict and explores the brutal legacy of colonialism in Africa.',
+                status: 'available'
+            },
+           
+        ]
+    })
 
-    newUser.save();
+    firstUser.save();
+    secondUser.save();
 
 }
 
-module.exports = userModel;
+
+module.exports = {userModel,seedUserData};
