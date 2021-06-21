@@ -9,11 +9,11 @@ app.use(cors())
 
 const PORT = process.env.PORT;
 // connect to mongo db using mongoose
-mongoose.connect('mongodb://localhost:27017/myFavoriteCats',
+mongoose.connect('mongodb://localhost:27017/myFavoriteBooks',
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
-seedUserData();
+// seedUserData();
 
 app.get('/cats', getCats)
 

@@ -1,13 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const catSchema = require('./cat.model');
+const bookSchema = require('./cat.model');
 
-/*
- We are going to use mongoose, to do two things:
-    - Create the schema
-    - generate the model
-*/
 
 // Here we are creating a new schema obj, which will be used later on to generate the model
 const userSchema = new mongoose.Schema({
