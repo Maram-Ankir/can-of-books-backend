@@ -6,7 +6,7 @@ const getbooks = (request, response) => {
 
     const { email } = request.query;
 
-    userModel.findone({ email: email }, (error, userData) => {
+    userModel.findOne({ email: email }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
@@ -21,7 +21,7 @@ const createBook = (request, response) => {
 
     const { userEmail, bookName } = request.body;
 
-    userModel.findone({ email: userEmail }, (error, userData) => {
+    userModel.findOne({ email: userEmail }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
@@ -39,7 +39,7 @@ const updateBook = (request, response) => {
     const { userEmail, bookName } = request.body;
     const bookIndex = request.params.book_idx;
 
-    userModel.findone({ email: userEmail }, (error, userData) => {
+    userModel.findOne({ email: userEmail }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
@@ -58,7 +58,7 @@ const deleteBook = (request, response) => {
     const bookIndex = request.params.book_idx;
 
 
-    userModel.findone({ email: userEmail }, (error, userData) => {
+    userModel.findOne({ email: userEmail }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
