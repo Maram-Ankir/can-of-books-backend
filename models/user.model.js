@@ -13,7 +13,9 @@ const userModel = mongoose.model('users', userSchema);
 
 
 function seedUserData() {
+
     const firstUser = new userModel({
+
         email: 'maramankir5@gmail.com',
         books: [
             {
@@ -26,7 +28,7 @@ function seedUserData() {
                 description: 'When Nigerian author Adichie was growing up, the Biafran war “hovered over everything”. Her sweeping, evocative novel, which won the Orange prize, charts the political and personal struggles of those caught up in the conflict and explores the brutal legacy of colonialism in Africa.',
                 status: 'available'
             },
-           
+
         ]
     })
 
@@ -43,14 +45,21 @@ function seedUserData() {
                 description: 'When Nigerian author Adichie was growing up, the Biafran war “hovered over everything”. Her sweeping, evocative novel, which won the Orange prize, charts the political and personal struggles of those caught up in the conflict and explores the brutal legacy of colonialism in Africa.',
                 status: 'available'
             },
-           
+
         ]
+
     })
 
     firstUser.save();
     secondUser.save();
 
+
+    console.log('01111',firstUser);
+    console.log('0122222',secondUser);
+    
+
+
 }
 
 
-module.exports = {userModel,seedUserData};
+module.exports = { userModel, seedUserData};

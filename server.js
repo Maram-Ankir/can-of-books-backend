@@ -22,7 +22,7 @@ const PORT = process.env.PORT;
 mongoose.connect('mongodb://localhost:27017/myFavoriteBooks',
     { useNewUrlParser: true, useUnifiedTopology: true });
 
-seedUserData();
+// seedUserData();
 
 app.get('/books', getbooks);
 
