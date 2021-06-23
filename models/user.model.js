@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     books: [bookSchema]
 });
 
-const userModel = mongoose.model('users', userSchema);
+const userModel = new mongoose.model('users', userSchema);
 
 
 function seedUserData() {
@@ -32,6 +32,7 @@ function seedUserData() {
         ]
     })
 
+    
     const secondUser = new userModel({
         email: 'reembaniali@gmail.com',
         books: [

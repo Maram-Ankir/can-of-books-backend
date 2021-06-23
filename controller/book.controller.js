@@ -5,7 +5,6 @@ const { userModel } = require('../models/user.model');
 const getbooks = (request, response) => {
 
     const { email } = request.query;
-
     userModel.findOne({ email: email }, (error, userData) => {
         if (error) {
             response.send(error)
@@ -15,17 +14,17 @@ const getbooks = (request, response) => {
     });
 }
 
-
 ///////////////////////////////////////////////////////
 const createBook = (request, response) => {
 
-    const { userEmail, bookName } = request.body;
+    const { userEmail, bookName, description, status } = request.body;
 
     userModel.findOne({ email: userEmail }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
-            userData.books.push({ name: bookName });
+            console.log('bookname',bookName)
+            userData.books.push({ name: bookName, description: description, status: status });
             userData.save();
             response.json(userData);
         }
@@ -36,14 +35,15 @@ const createBook = (request, response) => {
 /////////////////////////////////////////////////
 const updateBook = (request, response) => {
 
-    const { userEmail, bookName } = request.body;
+    const { userEmail, bookName, description, status } = request.body;
     const bookIndex = request.params.book_idx;
 
     userModel.findOne({ email: userEmail }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
-            userData.books.splice(bookIndex, 1, { name: bookName });
+            const index=userData.books.findIndex(val=>val._id===bookIndex)
+            userData.books.splice(index, 1, { name: bookName, description: description, status: status });
             userData.save();
             response.json(userData);
         }
@@ -54,15 +54,17 @@ const updateBook = (request, response) => {
 //////////////////////////////////////////////////
 const deleteBook = (request, response) => {
 
-    const { userEmail } = request.query;
+    const { email } = request.query;
     const bookIndex = request.params.book_idx;
 
-
-    userModel.findOne({ email: userEmail }, (error, userData) => {
+    // console.log(request.query);
+    // console.log(request.params.book_idx);
+    userModel.findOne({ email: email }, (error, userData) => {
         if (error) {
             response.send(error)
         } else {
-            userData.cats.splice(bookIndex, 1);
+        const index=userData.books.findIndex(val=>val._id===bookIndex)
+            userData.books.splice(index, 1);
             userData.save();
             response.json(userData)
         }
