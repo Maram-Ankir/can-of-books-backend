@@ -5,7 +5,6 @@ const { userModel } = require('../models/user.model');
 const getbooks = (request, response) => {
 
     const { email } = request.query;
-    // console.log(request.query);
     userModel.findOne({ email: email }, (error, userData) => {
         if (error) {
             response.send(error)
@@ -57,6 +56,7 @@ const deleteBook = (request, response) => {
 
     const { email } = request.query;
     const bookIndex = request.params.book_idx;
+
     // console.log(request.query);
     // console.log(request.params.book_idx);
     userModel.findOne({ email: email }, (error, userData) => {
