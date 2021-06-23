@@ -16,11 +16,11 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-
 const PORT = process.env.PORT;
 
 mongoose.connect('mongodb://localhost:27017/myFavoriteBooks',
-    { useNewUrlParser: true, useUnifiedTopology: true });
+    { useNewUrlParser: true, useUnifiedTopology: true }
+);
 
 seedUserData();
 
